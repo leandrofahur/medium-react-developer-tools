@@ -1,4 +1,5 @@
 import { useState } from "react";
+import TaskList from "./TaskList";
 
 function TodoList() {
   const [tasks, setTasks] = useState([]);
@@ -11,16 +12,16 @@ function TodoList() {
     }
   };
 
-  const toggleTaskCompletion = (index) => {
-    const updatedTasks = tasks.map((task, i) =>
-      i === index ? { ...task, completed: !task.completed } : task
-    );
-    setTasks(updatedTasks);
-  };
+  // const toggleTaskCompletion = (index) => {
+  //   const updatedTasks = tasks.map((task, i) =>
+  //     i === index ? { ...task, completed: !task.completed } : task
+  //   );
+  //   setTasks(updatedTasks);
+  // };
 
-  const deleteTask = (index) => {
-    setTasks(tasks.filter((_, i) => i !== index));
-  };
+  // const deleteTask = (index) => {
+  //   setTasks(tasks.filter((_, i) => i !== index));
+  // };
 
   return (
     <div>
@@ -31,21 +32,8 @@ function TodoList() {
         onChange={(e) => setNewTask(e.target.value)}
       />
       <button onClick={addTask}>Add Task</button>
-      <ul>
-        {tasks.map((task, index) => (
-          <li key={index}>
-            <span
-              style={{
-                textDecoration: task.completed ? "line-through" : "none",
-              }}
-              onClick={() => toggleTaskCompletion(index)}
-            >
-              {task.text}
-            </span>
-            <button onClick={() => deleteTask(index)}>Delete</button>
-          </li>
-        ))}
-      </ul>
+      {/* Here we introduce the prop drilling issue by not passing the tasks prop */}
+      <TaskList />
     </div>
   );
 }
