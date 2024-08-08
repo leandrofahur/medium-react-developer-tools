@@ -19,9 +19,9 @@ function TodoList() {
   //   setTasks(updatedTasks);
   // };
 
-  // const deleteTask = (index) => {
-  //   setTasks(tasks.filter((_, i) => i !== index));
-  // };
+  const deleteTask = (index) => {
+    setTasks(tasks.filter((_, i) => i !== index));
+  };
 
   return (
     <div>
@@ -32,8 +32,7 @@ function TodoList() {
         onChange={(e) => setNewTask(e.target.value)}
       />
       <button onClick={addTask}>Add Task</button>
-      {/* Here we introduce the prop drilling issue by not passing the tasks prop */}
-      <TaskList />
+      <TaskList tasks={tasks} />
     </div>
   );
 }
