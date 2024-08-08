@@ -2,11 +2,16 @@ import propTypes from "prop-types";
 
 import TaskItem from "./TaskItem";
 
-function TaskList({ tasks }) {
+function TaskList({ tasks, deleteTask }) {
   return (
     <ul>
       {tasks.map((task, index) => (
-        <TaskItem key={index} task={task} />
+        <TaskItem
+          key={index}
+          index={index}
+          task={task}
+          deleteTask={deleteTask}
+        />
       ))}
     </ul>
   );
@@ -19,6 +24,7 @@ TaskList.propTypes = {
       completed: propTypes.bool,
     })
   ),
+  deleteTask: propTypes.func.isRequired,
 };
 
 TaskList.defaultProps = {

@@ -32,7 +32,7 @@ function TodoList() {
         onChange={(e) => setNewTask(e.target.value)}
       />
       <button onClick={addTask}>Add Task</button>
-      <TaskList tasks={tasks} />
+      <TaskList tasks={tasks} deleteTask={deleteTask} />
     </div>
   );
 }
